@@ -1,9 +1,10 @@
-import json
 from os.path import *
-import os
+import os, sys, json
+from tkinter import W
 
 data = [] 
 passes = [4, 4, True, 3, 3, True, True, 1, 6]
+path = "creds.txt"
 
 def getInt():
     for i in range(100):
@@ -61,14 +62,14 @@ def setup():
 def saveData():
     global data
     
-    if exists("creds.txt"): os.remove("creds.txt")
+    if exists(path): os.remove(path)
     
-    with open("creds.txt", "w") as outfile:
+    with open(path, "w") as outfile:
         json.dump(data, outfile)
 
 def loadData(): 
     global data
-    with open("creds.txt", "r") as infile:
+    with open(path, "r") as infile:
         data = json.load(infile)
 
 def clear():
@@ -128,8 +129,11 @@ def menu():
 def main():
     global data
     clear()
-    if exists("creds.txt"): loadData()
+    if exists(path): loadData()
     else: setup()
     menu()
     
-if __name__ == "__main__": main()
+if __name__ == "__main__":
+    try: path = sys.argv[1]
+    except: pass
+    main()
