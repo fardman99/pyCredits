@@ -3,6 +3,7 @@ from os.path import *
 import os
 
 data = [] 
+passes = [4, 4, True, 3, 3, True, True, 1, 6]
 
 def getInt():
     for i in range(100):
@@ -70,23 +71,49 @@ def loadData():
     with open("creds.txt", "r") as infile:
         data = json.load(infile)
 
-def checkPass(x):
-    global data
-    if data[x] == True:
-        return "Yes"
-    if data[x] == False:
-        return "No"
-
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def checkState(x):
+    if x in [0, 1, 3, 4, 7, 8]:
+        if data[x] < passes[x]:
+            return False
+        else: return True
+    else:
+        if data[x] != True:
+            return False
+        else: return True
+
+def prepareInfo():
+    global x
+    print("\n--Credits needed--")
+    if not checkState(0):
+        print("\nEnglish - %d" % (passes[0] - data[0]))
+    if not checkState(1):
+        print("\nMath - %d" % (passes[1] - data[1]))
+    if not checkState(3):
+        print("\nHistory - %d" % (passes[3] - data[3]))
+    if not checkState(4):
+        print("\nScience - %d" % (passes[4] - data[4]))
+    if not checkState(7):
+        print("\n Art - 1")
+    if not checkState(8):
+        print("\nElectives - %d" % (passes[8] - data[8]))
+    print("\n--Course Requirements--")
+    if not checkState(2):
+        print("\nAlgebra 2")
+    if not checkState(5):
+        print("\nHealth")
+    if not checkState(6):
+        print("\nPE")
+
 def menu():
     print("---pyCredits---\nEnglish - %d Credits\nMath - %d Credits\nHistory - %d Credits\nScience - %d Credits\nArt - %d Credits\nElectives - %d Credits" % (data[0], data[1], data[3], data[4], data[7], data[8]))
-    print("\nAlgebra 2 passed? | %s" % (checkPass(2)))
-    print("\nHealth passed? | %s" % checkPass(5))
-    print("\nPE passed? | %s" % checkPass(6))
 
-    a = input("Setup or Quit? ")
+    if data[0] < 4 or data[1] < 4 or data[2] != True or data[3] < 3 or data[4] < 3 or data[5] != True or data[6] != True or data[7] < 1 or data[8] < 6:
+        prepareInfo()
+
+    a = input("\nSetup or Quit? ")
     if a == "Setup":
         clear()
         setup()
@@ -105,5 +132,4 @@ def main():
     else: setup()
     menu()
     
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
