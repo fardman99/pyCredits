@@ -42,7 +42,7 @@ def setup():
     data.append(getInt())
     print("How many Math credits do you have?")
     data.append(getInt())
-    print("Have you passed Algebra 2 (Yes/No)")
+    print("Have you passed Algebra 2 (Y)es / (N)o)")
     data.append(getBool())
     print("How many History credits do you have?")
     data.append(getInt())
@@ -56,7 +56,6 @@ def setup():
     data.append(getInt())
     print("How many Elective credits do you have?")
     data.append(getInt())
-    print("Setup complete.")
 
     clear()
     saveData()
@@ -99,23 +98,23 @@ def checkState(x):
 
 def prepareInfo():
     global x
-    print("\n--Credits needed--")
+    print("--Credits needed--")
     if not checkState(0):
-        print("\nEnglish - %d" % (passes[0] - data[0]))
+        print("English - %d" % (passes[0] - data[0]))
     if not checkState(1):
-        print("\nMath - %d" % (passes[1] - data[1]))
+        print("Math - %d" % (passes[1] - data[1]))
     if not checkState(3):
-        print("\nHistory - %d" % (passes[3] - data[3]))
+        print("History - %d" % (passes[3] - data[3]))
     if not checkState(4):
-        print("\nScience - %d" % (passes[4] - data[4]))
+        print("Science - %d" % (passes[4] - data[4]))
     if not checkState(5):
-        print("\nHealth - 0.5")
+        print("Health - 0.5")
     if not checkState(6):
-        print("\nPE - 0.5")
+        print("PE - 0.5")
     if not checkState(7):
-        print("\nArt - 1")
+        print("Art - 1")
     if not checkState(8):
-        print("\nElectives - %d" % (passes[8] - data[8]))
+        print("Electives - %d" % (passes[8] - data[8]))
     if getTotal() != 23.0:
         print("\nTotal - %0.1f" % (23.0 - x))
     if not checkState(2):
