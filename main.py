@@ -1,5 +1,6 @@
 from os.path import *
 import os, sys, json
+from tabnanny import check
 from tkinter import W
 
 data = [] 
@@ -107,19 +108,18 @@ def prepareInfo():
         print("\nHistory - %d" % (passes[3] - data[3]))
     if not checkState(4):
         print("\nScience - %d" % (passes[4] - data[4]))
+    if not checkState(5):
+        print("\nHealth - 0.5")
+    if not checkState(6):
+        print("\nPE - 0.5")
     if not checkState(7):
         print("\nArt - 1")
     if not checkState(8):
         print("\nElectives - %d" % (passes[8] - data[8]))
     if getTotal() != 23.0:
         print("\nTotal - %0.1f" % (23.0 - x))
-    print("\n--Course Requirements--")
     if not checkState(2):
-        print("\nAlgebra 2")
-    if not checkState(5):
-        print("\nHealth")
-    if not checkState(6):
-        print("\nPE")
+        print("\nYou must also pass Algebra 2.")
 
 def getTotal():
     global x
@@ -139,8 +139,14 @@ def printTotal():
 
 def menu():
     print("---pyCredits---\nEnglish - %d Credits\nMath - %d Credits\nHistory - %d Credits\nScience - %d Credits\nArt - %d Credits\nElectives - %d Credits" % (data[0], data[1], data[3], data[4], data[7], data[8]))
+    if data[5]: print("PE - 0.5 Credits")
+    else: print("PE - 0 Credits")
+    if data[6]: print("Health - 0.5 Credits")
+    else: print("Heatlh - 0 Credits")
+
     getTotal()
     printTotal()
+    
     if data[0] < 4 or data[1] < 4 or data[2] != True or data[3] < 3 or data[4] < 3 or data[5] != True or data[6] != True or data[7] < 1 or data[8] < 6:
         prepareInfo()
 
