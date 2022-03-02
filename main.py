@@ -137,6 +137,16 @@ def printTotal():
         print("You need %0.1f more credit(s) to meet the requirements." % (23.0 - x))
     return x
 
+def menu2():
+    prepareInfo()
+    a = input("\n(B)ack ")
+    if a in ["Back", "back", "b", "B"]:
+        clear()
+        menu()
+    else:
+        clear()
+        menu2()
+
 def menu():
     print("---pyCredits---\nEnglish - %d Credits\nMath - %d Credits\nHistory - %d Credits\nScience - %d Credits\nArt - %d Credits\nElectives - %d Credits" % (data[0], data[1], data[3], data[4], data[7], data[8]))
     if data[5]: print("PE - 0.5 Credits")
@@ -146,11 +156,8 @@ def menu():
 
     getTotal()
     printTotal()
-    
-    if data[0] < 4 or data[1] < 4 or data[2] != True or data[3] < 3 or data[4] < 3 or data[5] != True or data[6] != True or data[7] < 1 or data[8] < 6:
-        prepareInfo()
 
-    a = input("\nSetup or Quit? ")
+    a = input("\n(S)etup, (M)ore Details, (Q)uit? ")
     if a in ["Setup", "setup", "s", "S"]:
         clear()
         setup()
@@ -158,6 +165,9 @@ def menu():
     elif a in ["Quit", "quit", "q", "Q"]:
         clear()
         exit()
+    elif a in ["More", "more", "m", "M"]:
+        clear()
+        menu2()
     else:
         clear()
         menu()
