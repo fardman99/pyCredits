@@ -1,7 +1,5 @@
 from os.path import *
 import os, sys, json
-from tabnanny import check
-from tkinter import W
 
 data = [] 
 passes = [4, 4, True, 3, 3, True, True, 1, 6]
