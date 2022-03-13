@@ -131,9 +131,9 @@ def getTotal():
 def printTotal():
     print("Total -  %0.1f" % (x))
     if x >= 23.0 and data[2] and data[5] and data[6]:
-        print("You meet the credit and class requirements for graduation.")
+        print("\nYou meet the credit and class requirements for graduation.")
     if x < 23.0:
-        print("You need %0.1f more credit(s) to meet the requirements." % (23.0 - x))
+        print("\nYou need %0.1f more credit(s) to meet the requirements." % (23.0 - x))
     return x
 
 def menu2():
